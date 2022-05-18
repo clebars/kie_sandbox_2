@@ -96,9 +96,15 @@
         </dmn:invocation>
       </dmn:contextEntry>
       <dmn:contextEntry>
+        <dmn:variable id="_0E897543-827F-4125-9E7E-4E0997854FB7" name="_label_1" typeRef="string"/>
+        <dmn:literalExpression id="_298F3F7C-27E8-4DFD-AFF7-D3D9A18110C5">
+          <dmn:text>replace(model.labelMask, "&lt;unitPrice&gt;", string(model.unitPrice))</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
         <dmn:variable id="_82C52EE7-E26E-4E97-99B5-D66EF4A31649" name="_label" typeRef="string"/>
         <dmn:literalExpression id="_B57FAD49-46C0-4C22-8C9B-07EE4EF3AB40">
-          <dmn:text>"toto"</dmn:text>
+          <dmn:text>replace(_label_1, "&lt;volume&gt;", string(volume))</dmn:text>
         </dmn:literalExpression>
       </dmn:contextEntry>
       <dmn:contextEntry>
@@ -143,7 +149,7 @@ else
     <dmn:informationRequirement id="_98C238C2-1125-4CE0-9251-2065B1466491">
       <dmn:requiredInput href="#_376CF0AE-E38B-412D-908C-E2201E0AA878"/>
     </dmn:informationRequirement>
-    <dmn:decisionTable id="_A1DE6ECE-D680-43F1-84CE-9D448B88A9D2" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+    <dmn:decisionTable id="_A1DE6ECE-D680-43F1-84CE-9D448B88A9D2" hitPolicy="FIRST" preferredOrientation="Rule-as-Row">
       <dmn:input id="_2BD51196-E2AB-4D9C-93FC-0E47732324A1">
         <dmn:inputExpression id="_0B6737B1-E3CD-43A5-A99C-93FA61FA9299" typeRef="string">
           <dmn:text>consumptionType</dmn:text>
@@ -159,10 +165,26 @@ else
           <dmn:text>source</dmn:text>
         </dmn:inputExpression>
       </dmn:input>
-      <dmn:output id="_1A57D83F-55C9-4E95-B6C2-37CC8B57DEAB" name="invoicingLineCode" typeRef="string"/>
-      <dmn:output id="_7145FB95-AEE9-4D55-8A52-D6BDFD99B381" name="labelMask" typeRef="string"/>
-      <dmn:output id="_02F82452-8031-4CAD-BE77-FA19CAEEFCA5" name="minimumVolume" typeRef="number"/>
-      <dmn:output id="_B5CD5BA6-1BB3-4794-8742-2A9F87EFD8AB" name="unitPrice" typeRef="string"/>
+      <dmn:output id="_1A57D83F-55C9-4E95-B6C2-37CC8B57DEAB" name="invoicingLineCode" typeRef="string">
+        <dmn:defaultOutputEntry id="_32439229-A229-4C62-9BA2-4EF647B16354">
+          <dmn:text>"default invoice line code"</dmn:text>
+        </dmn:defaultOutputEntry>
+      </dmn:output>
+      <dmn:output id="_7145FB95-AEE9-4D55-8A52-D6BDFD99B381" name="labelMask" typeRef="string">
+        <dmn:defaultOutputEntry id="_510F67B4-E6FE-419C-B418-63D8BB3E47DA">
+          <dmn:text>"&lt;volume&gt; consommés pour un prix unitaire de &lt;unitPrice&gt;"</dmn:text>
+        </dmn:defaultOutputEntry>
+      </dmn:output>
+      <dmn:output id="_02F82452-8031-4CAD-BE77-FA19CAEEFCA5" name="minimumVolume" typeRef="number">
+        <dmn:defaultOutputEntry id="_F0EDC125-4F83-45BD-887C-E4EFE5CB6A7E">
+          <dmn:text>0</dmn:text>
+        </dmn:defaultOutputEntry>
+      </dmn:output>
+      <dmn:output id="_B5CD5BA6-1BB3-4794-8742-2A9F87EFD8AB" name="unitPrice" typeRef="number">
+        <dmn:defaultOutputEntry id="_67161234-EFB3-4A54-896E-C289BFD458A0">
+          <dmn:text>0.083612</dmn:text>
+        </dmn:defaultOutputEntry>
+      </dmn:output>
       <dmn:annotation name="annotation-1"/>
       <dmn:rule id="_DA0D7589-DE00-4820-9D49-B8579D93D7FD">
         <dmn:inputEntry id="_C0C4DA68-44EC-43CB-8B34-113D8BD918E3">
@@ -195,7 +217,7 @@ else
           <dmn:text>"SMS"</dmn:text>
         </dmn:inputEntry>
         <dmn:inputEntry id="_D102F77F-278A-46C8-B790-2199CBE44A64">
-          <dmn:text>""</dmn:text>
+          <dmn:text>!= "Offre Beauté"</dmn:text>
         </dmn:inputEntry>
         <dmn:inputEntry id="_DAC9AE8E-082E-4381-ABA1-16C16B5CAD3F">
           <dmn:text>"ClicRDV"</dmn:text>
@@ -242,32 +264,6 @@ else
           <dmn:text/>
         </dmn:annotationEntry>
       </dmn:rule>
-      <dmn:rule id="_E190C540-65BF-4E12-9160-B7F2965C24D0">
-        <dmn:inputEntry id="_28B0CF78-30C6-4A7F-BC97-09F1C141D34A">
-          <dmn:text>"SMS"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:inputEntry id="_087B0322-35D8-4DDF-BE34-8B32F75A8FC6">
-          <dmn:text>""</dmn:text>
-        </dmn:inputEntry>
-        <dmn:inputEntry id="_9D1A4EEC-6198-48A7-8049-899C8462DE6B">
-          <dmn:text>"CRM"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_333C8ABD-938A-47CE-9D3C-7B4A46F899BA">
-          <dmn:text>"TBD2"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:outputEntry id="_57D44B9C-AC16-4A95-9FD5-B08FF09780DE">
-          <dmn:text>"SMS pour CRM : &lt;volume&gt; SMS consommés pour un prix unitaire de &lt;unitPrice&gt;"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:outputEntry id="_5B0F0E89-17E9-42F6-90A7-11B750718AE8">
-          <dmn:text>0</dmn:text>
-        </dmn:outputEntry>
-        <dmn:outputEntry id="_D771A257-7736-4166-BFDA-9486AED02F48">
-          <dmn:text>0.083612</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
     </dmn:decisionTable>
   </dmn:decision>
   <dmndi:DMNDI>
@@ -294,6 +290,9 @@ else
           <kie:ComponentWidths dmnElementRef="_C6946687-204B-4C93-B70F-293ECDB7D431">
             <kie:width>338</kie:width>
           </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_298F3F7C-27E8-4DFD-AFF7-D3D9A18110C5">
+            <kie:width>508</kie:width>
+          </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_B57FAD49-46C0-4C22-8C9B-07EE4EF3AB40">
             <kie:width>508</kie:width>
           </kie:ComponentWidths>
@@ -308,7 +307,7 @@ else
           <kie:ComponentWidths dmnElementRef="_A1DE6ECE-D680-43F1-84CE-9D448B88A9D2">
             <kie:width>50</kie:width>
             <kie:width>100</kie:width>
-            <kie:width>100</kie:width>
+            <kie:width>147</kie:width>
             <kie:width>100</kie:width>
             <kie:width>100</kie:width>
             <kie:width>100</kie:width>
@@ -319,7 +318,7 @@ else
           <kie:ComponentWidths dmnElementRef="_A1DE6ECE-D680-43F1-84CE-9D448B88A9D2">
             <kie:width>50</kie:width>
             <kie:width>100</kie:width>
-            <kie:width>100</kie:width>
+            <kie:width>147</kie:width>
             <kie:width>100</kie:width>
             <kie:width>100</kie:width>
             <kie:width>100</kie:width>
