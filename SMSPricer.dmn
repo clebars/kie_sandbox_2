@@ -20,7 +20,7 @@
     </dmn:allowedValues>
   </dmn:itemDefinition>
   <dmn:itemDefinition id="_951BA44B-CF4D-46E8-A1D6-53F30EDCEDD5" name="tInvoiceLine" isCollection="false">
-    <dmn:itemComponent id="_845478EA-84BA-4242-B94A-07055D1397CD" name="price" isCollection="false">
+    <dmn:itemComponent id="_845478EA-84BA-4242-B94A-07055D1397CD" name="price2" isCollection="false">
       <dmn:typeRef>number</dmn:typeRef>
     </dmn:itemComponent>
     <dmn:itemComponent id="_CAF8AA17-9E17-4E05-94F5-72B366F96B00" name="label" isCollection="false">
@@ -299,7 +299,9 @@ else
           <kie:ComponentWidths dmnElementRef="_2B1DF6F6-75C5-4B28-9F5B-7D1A50BD2D28">
             <kie:width>508</kie:width>
           </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_11E97756-3E51-4632-B185-E2F3CEF62F17"/>
+          <kie:ComponentWidths dmnElementRef="_11E97756-3E51-4632-B185-E2F3CEF62F17">
+            <kie:width>521</kie:width>
+          </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_9557D775-7274-4306-805D-185B4C6E24EC">
             <kie:width>50</kie:width>
             <kie:width>521</kie:width>
@@ -307,7 +309,7 @@ else
           <kie:ComponentWidths dmnElementRef="_A1DE6ECE-D680-43F1-84CE-9D448B88A9D2">
             <kie:width>50</kie:width>
             <kie:width>100</kie:width>
-            <kie:width>147</kie:width>
+            <kie:width>100</kie:width>
             <kie:width>100</kie:width>
             <kie:width>100</kie:width>
             <kie:width>100</kie:width>
@@ -318,7 +320,7 @@ else
           <kie:ComponentWidths dmnElementRef="_A1DE6ECE-D680-43F1-84CE-9D448B88A9D2">
             <kie:width>50</kie:width>
             <kie:width>100</kie:width>
-            <kie:width>147</kie:width>
+            <kie:width>100</kie:width>
             <kie:width>100</kie:width>
             <kie:width>100</kie:width>
             <kie:width>100</kie:width>
